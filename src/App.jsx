@@ -13,11 +13,13 @@ function getCommentsByPostId(postId) {
   return commentsFromServer.filter(comment => comment.postId === postId);
 }
 
-export const posts = postsFromServer.map(post => ({
-  ...post,
-  user: getUserById(post.userId),
-  comments: getCommentsByPostId(post.id),
-}));
+const posts = postsFromServer.map(post => {
+  return {
+    ...post,
+    user: getUserById(post.userId),
+    comments: getCommentsByPostId(post.id),
+  };
+});
 
 export const App = () => (
   <section className="App">
